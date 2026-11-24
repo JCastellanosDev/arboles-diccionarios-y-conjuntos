@@ -113,28 +113,45 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     @Override
-    public void inorder(Nodo nodo) throws NoSuchElementException {
-        if (nodo == null){
+    public void inorder() throws NoSuchElementException {
+        if (isEmpty()){
             throw new NoSuchElementException("El arbol esta vacio");
-            inorderAyudin(nodo);
         }
-
+        inorderAyudin(root);
     }
     private void inorderAyudin(Nodo nodo){
         if (nodo==null)return;
         inorderAyudin(nodo.getIzq());
-        IO.println(nodo.dato+ " ");
+        IO.println(nodo.getElemento() + " ");
         inorderAyudin((nodo.getDer()));
     }
 
     @Override
     public void preorder() throws NoSuchElementException {
+    if (isEmpty())
+        throw new NoSuchElementException("El arbol esta vacio");
+        preorderAyudin(root);
+    }
 
+    public void preorderAyudin(Nodo nodo){
+        if (nodo == null)return;
+        IO.println(nodo.getElemento()+" ");
+        preorderAyudin(nodo.getIzq());
+        preorderAyudin(nodo.getDer());
     }
 
     @Override
     public void postorder() throws NoSuchElementException {
+        if (isEmpty())
+            throw new NoSuchElementException("El arbol esta vacio");
+        postorderAyudin(root);
+    }
 
+    private void postorderAyudin(Nodo nodo){
+        if ( nodo== null)return;
+        postorderAyudin(nodo.getIzq());
+        postorderAyudin(nodo.getDer());
+        IO.println(nodo.getElemento()+" ");
     }
 
     @Override
