@@ -15,6 +15,8 @@ public interface Tree<T> {
     void preorder() throws NoSuchElementException;
     void postorder()throws NoSuchElementException;
 
+    Nodo<T> ampSearch(T value) throws NoSuchElementException;
+
     boolean isEmpty();
 
     int Height() throws NoSuchElementException;
