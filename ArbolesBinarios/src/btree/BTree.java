@@ -1,6 +1,6 @@
 package btree;
 
-import nodo.Nodo;
+import nodolista.Nodo;
 import tree.Tree;
 import utilis.TreePrinter;
 import dstack.DStack;
