@@ -86,7 +86,6 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
             tmp = delete(root.getDer(),value);
             root.setDer(tmp);
         }else if (root.getElemento().compareTo(value) > 0) {
-            delete(root.getIzq(),value);
             root.setIzq(delete(root.getIzq(),value));
         }else {
             if (root.getIzq() == null) {
