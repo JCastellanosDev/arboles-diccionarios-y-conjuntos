@@ -1,6 +1,6 @@
 package tree;
 
-import nodo.Nodo;
+import nodolista.Nodo;
 import java.util.NoSuchElementException;
 
 public interface Tree<T> {
@@ -14,6 +14,8 @@ public interface Tree<T> {
     void inorder()  throws NoSuchElementException;
     void preorder() throws NoSuchElementException;
     void postorder()throws NoSuchElementException;
+
+    Nodo<T> ampSearch(T value) throws NoSuchElementException;
 
     boolean isEmpty();
 
