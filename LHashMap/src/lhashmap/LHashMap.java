@@ -42,17 +42,47 @@ public class LHashMap<K,V> implements Mapa<K,V> {
 
     @Override
     public V remove(K key) {
+        for(Entrada<K,V> entrada : dLinkList){
+            if(entrada.getKey().equals(key)){
+                V oldValue = entrada.getValue();
+                dLinkList.delete(entrada);
+                size--;
+                return oldValue;
+            }
+        }
         return null;
     }
 
     @Override
     public V get(K key) {
+        for(Entrada<K,V> entrada : dLinkList){
+            if(entrada.getKey().equals(key)){
+                return entrada.getValue();
+            }
+        }
         return null;
     }
 
     @Override
     public Iterable<V> values() {
-        return null;
+        return new Iterable<V>(){
+            @Override
+            public Iterator<V> iterator() {
+                return new Iterator<V>(){
+
+                    final Iterator<Entrada<K,V>> iterator = dLinkList.iterator();
+                    @Override
+                    public boolean hasNext() {
+                        return iterator.hasNext();
+                    }
+
+                    @Override
+                    public V next() {
+                        return iterator.next().getValue();
+                    }
+                };
+            }
+        };
     }
 
     @Override
