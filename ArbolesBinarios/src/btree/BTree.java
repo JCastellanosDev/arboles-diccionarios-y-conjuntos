@@ -5,7 +5,9 @@ import tree.Tree;
 import utilis.TreePrinter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.NoSuchElementException;
 
 public class BTree<T extends Comparable<T>> implements Tree<T> {
@@ -112,6 +114,9 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         return current;
     }
 
+    //
+    //lo nuevo
+    //
     @Override
     public void inorder() throws NoSuchElementException {
         if (isEmpty()){
@@ -153,7 +158,9 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         postorderAyudin(nodo.getDer());
         IO.println(nodo.getElemento()+" ");
     }
-
+    //
+    // lo nuevo
+    //
     @Override
     public boolean isEmpty() {
         return root == null;
@@ -161,17 +168,63 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public int Height() throws NoSuchElementException {
-        return 0;
+        if (isEmpty()){
+            throw new NoSuchElementException("El arbol esta vacio");
+        }
+        Queue<Nodo<T>> cola = new LinkedList<>();
+        cola.add(root);
+        int altura = -1;
+        while (!cola.isEmpty()){
+            int tamañoNivel = cola.size();
+            altura++;
+            for (int i = 0; i < tamañoNivel; i++){
+                Nodo<T> actual = cola.poll();
+                if (actual.getIzq() != null) cola.add(actual.getIzq());
+                if (actual.getDer() != null) cola.add(actual.getDer());
+            }
+        }
+        return altura;
     }
 
     @Override
     public int Weight() throws NoSuchElementException {
-        return 0;
+        if (isEmpty()){
+            throw new NoSuchElementException("El arbol esta vacio");
+        }
+        Queue<Nodo<T>> cola = new LinkedList<>();
+        cola.add(root);
+        int peso = 0;
+        while (!cola.isEmpty()){
+            Nodo<T> actual = cola.poll();
+            peso++;
+            if (actual.getIzq() != null) cola.add(actual.getIzq());
+            if (actual.getDer() != null) cola.add(actual.getDer());
+        }
+        return peso;
     }
 
     @Override
     public int Degree() throws NoSuchElementException {
-        return 0;
+        if (isEmpty()){
+            throw new NoSuchElementException("El arbol esta vacio");
+        }
+        Queue<Nodo<T>> cola = new LinkedList<>();
+        cola.add(root);
+        int grado = 0;
+        while (!cola.isEmpty()){
+            Nodo<T> actual = cola.poll();
+            int hijos = 0;
+            if (actual.getIzq() != null){
+                hijos++;
+                cola.add(actual.getIzq());
+            }
+            if (actual.getDer() != null){
+                hijos++;
+                cola.add(actual.getDer());
+            }
+            if (hijos > grado) grado = hijos;
+        }
+        return grado;
     }
 
 
