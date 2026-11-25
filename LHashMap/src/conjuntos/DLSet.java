@@ -71,17 +71,38 @@ public class DLSet<T> implements Conjuntable<T> ,Iterable<T> {
 
     @Override
     public DLSet<T> inter(DLSet<T> other) {
-        return null;
+        DLSet<T> inter = new DLSet<>();
+
+        for (T value : this) {
+            if (other.contains(value) != -1) {
+                inter.add(value);
+            }
+        }
+
+        return inter;
     }
 
     @Override
     public DLSet<T> diff(DLSet<T> other) {
-        return null;
+        DLSet<T> diff = new DLSet<>();
+
+        for (T value : this) {
+            if (other.contains(value) == -1) {
+                diff.add(value);
+            }
+        }
+
+        return diff;
     }
 
     @Override
     public boolean subset(DLSet<T> other) {
-        return false;
+        for (T value : this) {
+            if (other.contains(value) == -1) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
