@@ -75,6 +75,11 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         return root;
     }
 
+    @Override
+    public void inorder() throws NoSuchElementException {
+
+    }
+
     private Nodo<T> delete(Nodo<T> root, T value) {
         Nodo<T> tmp;
         if (root == null) {
@@ -112,20 +117,20 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         return current;
     }
 
-    @Override
-    public void inorder(Nodo nodo) throws NoSuchElementException {
-        if (nodo == null){
-            throw new NoSuchElementException("El arbol esta vacio");
-            inorderAyudin(nodo);
-        }
-
-    }
-    private void inorderAyudin(Nodo nodo){
-        if (nodo==null)return;
-        inorderAyudin(nodo.getIzq());
-        IO.println(nodo.dato+ " ");
-        inorderAyudin((nodo.getDer()));
-    }
+//    @Override
+//    public void inorder(Nodo nodo) throws NoSuchElementException {
+//        if (nodo == null){
+//            throw new NoSuchElementException("El arbol esta vacio");
+//            inorderAyudin(nodo);
+//        }
+//
+//    }
+//    private void inorderAyudin(Nodo nodo){
+//        if (nodo==null)return;
+//        inorderAyudin(nodo.getIzq());
+//        IO.println(nodo.dato+ " ");
+//        inorderAyudin((nodo.getDer()));
+//    }
 
     @Override
     public void preorder() throws NoSuchElementException {
