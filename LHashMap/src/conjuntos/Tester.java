@@ -16,7 +16,7 @@ void main() {
     b.add(5);
     b.add(6);
     b.add(7);
- //   b.remove(7);
+
 
     IO.println("Esta vacio dlset? " + dlset.isEmpty());
 
@@ -45,6 +45,15 @@ void main() {
     d.add(3);
     IO.println("d subconjunto de dlset? " + d.subset(dlset));
     IO.println("b subconjunto de dlset? " + b.subset(dlset));
+
+    IO.println("=".repeat(40));
+    DLSet<Integer> conjuntoVacio = new DLSet<>();
+    DLSet<Integer> unionVacia = dlset.union(conjuntoVacio);
+    IO.println("Union con conjunto vacio es null? " + (unionVacia == null));
+    IO.println("Union con conjunto vacio:");
+    for (Integer i : unionVacia) {
+        IO.println(i);
+    }
 
     IO.println("=".repeat(40));
     IO.println("contains(3): " + dlset.contains(3));

@@ -56,9 +56,6 @@ public class DLSet<T> implements Conjuntable<T> ,Iterable<T> {
     public DLSet<T> union(DLSet<T> other) {
         DLSet<T> union = new DLSet<>();
 
-        if (other.isEmpty()) {
-            return null;
-        }
         for (T value : this) {
             union.add(value);
         }
