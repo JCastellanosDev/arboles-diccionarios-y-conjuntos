@@ -6,7 +6,7 @@ import lhashmap.LHashMap;
 void main() {
 
     TreeMap<String, String> mapa = new TreeMap<>();
-    
+
     LHashMap<String,String> nombres = new LHashMap<>();
     nombres.put("Rulis", "Raul");
     nombres.put("Billy", "Cesar");
