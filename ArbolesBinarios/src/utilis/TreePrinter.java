@@ -1,6 +1,7 @@
 package utilis;
 
-import nodo.Nodo;
+//import nodo.Nodo;
+import nodolista.Nodo;
 
 import java.util.List;
 

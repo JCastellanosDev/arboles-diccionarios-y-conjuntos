@@ -16,6 +16,9 @@ void main() {
 
     numeros.printTree();
     IO.println("=".repeat(40));
+    IO.println("BFS 5: " + (numeros.ampSearch(5) != null ? "encontrado" : "no encontrado"));
+    IO.println("BFS 9: " + (numeros.ampSearch(9) != null ? "encontrado" : "no encontrado"));
+    IO.println("=".repeat(40));
     numeros.delete(1);
     numeros.printTree();
 

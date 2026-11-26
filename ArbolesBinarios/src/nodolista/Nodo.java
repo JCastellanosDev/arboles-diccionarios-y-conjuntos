@@ -1,4 +1,4 @@
-package nodo;
+package nodolista;
 
 public class Nodo<T> {
     private T elemento;
