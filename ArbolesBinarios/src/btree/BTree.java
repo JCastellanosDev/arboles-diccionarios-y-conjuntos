@@ -176,7 +176,7 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    
+
     @Override
     public Nodo<T> ampSearch(T value) throws NoSuchElementException {
         if (isEmpty()) {
