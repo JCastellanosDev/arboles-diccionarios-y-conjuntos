@@ -22,4 +22,27 @@ void main() {
     numeros.delete(1);
     numeros.printTree();
 
+    IO.println("=".repeat(40));
+    IO.println("Inorden:");
+    numeros.inorder();
+
+    IO.println("Preorden:");
+    numeros.preorder();
+
+    IO.println("Postorden:");
+    numeros.postorder();
+
+    IO.println("=".repeat(40));
+    IO.println("Altura: " + numeros.Height());
+    IO.println("Peso: " + numeros.Weight());
+    IO.println("Grado: " + numeros.Degree());
+
+    IO.println("=".repeat(40));
+    BTree<Integer> vacio = new BTree<>();
+    try {
+        vacio.Height();
+    } catch (Exception e) {
+        IO.println("Arbol vacio: " + e.getMessage());
+    }
+
 }
