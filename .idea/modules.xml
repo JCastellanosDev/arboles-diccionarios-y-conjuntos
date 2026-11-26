@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ArbolesBinarios/ArbolesBinarios.iml" filepath="$PROJECT_DIR$/ArbolesBinarios/ArbolesBinarios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algoritmoIterativoPila/algoritmoIterativoPila.iml" filepath="$PROJECT_DIR$/algoritmoIterativoPila/algoritmoIterativoPila.iml" />
       <module fileurl="file://$PROJECT_DIR$/LHashMap/LHashMap.iml" filepath="$PROJECT_DIR$/LHashMap/LHashMap.iml" />
     </modules>
   </component>
