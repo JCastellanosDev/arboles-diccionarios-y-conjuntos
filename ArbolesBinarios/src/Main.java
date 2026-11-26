@@ -1,4 +1,5 @@
 import btree.BTree;
+import nodolista.Nodo;
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -44,5 +45,22 @@ void main() {
     } catch (Exception e) {
         IO.println("Arbol vacio: " + e.getMessage());
     }
+
+    IO.println("=".repeat(40));
+    IO.println("Preorden iterativo con pila:");
+    numeros.preorderIterativo();
+
+    IO.println("=".repeat(40));
+    IO.println("numeros esta vacio? " + numeros.isEmpty());
+    IO.println("vacio esta vacio? " + vacio.isEmpty());
+
+    IO.println("=".repeat(40));
+    IO.println("insert(Nodo) con 7:");
+    numeros.insert(new Nodo<>(7));
+    numeros.printTree();
+
+    IO.println("delete(Nodo) con 6:");
+    numeros.delete(new Nodo<>(6));
+    numeros.printTree();
 
 }
