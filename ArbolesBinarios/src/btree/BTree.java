@@ -7,7 +7,9 @@ import dqueue.DQueue;
 import dstack.DStack;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.NoSuchElementException;
 
 public class BTree<T extends Comparable<T>> implements Tree<T> {
@@ -113,26 +115,50 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         return current;
     }
 
+    //
+    //lo nuevo
+    //
     @Override
     public void inorder() throws NoSuchElementException {
-        if (isEmpty()) {
+        if (isEmpty()){
             throw new NoSuchElementException("El arbol esta vacio");
         }
-        inorder(root);
+        inorderAyudin(root);
     }
-
-    private void inorder(Nodo<T> nodo) {
-        if (nodo != null) {
-            inorder(nodo.getIzq());
-            IO.println(nodo.getElemento());
-            inorder(nodo.getDer());
-        }
+    private void inorderAyudin(Nodo nodo){
+        if (nodo==null)return;
+        inorderAyudin(nodo.getIzq());
+        IO.println(nodo.getElemento() + " ");
+        inorderAyudin((nodo.getDer()));
     }
 
     @Override
     public void preorder() throws NoSuchElementException {
+    if (isEmpty())
+        throw new NoSuchElementException("El arbol esta vacio");
+        preorderAyudin(root);
+    }
+
+    public void preorderAyudin(Nodo nodo){
+        if (nodo == null)return;
+        IO.println(nodo.getElemento()+" ");
+        preorderAyudin(nodo.getIzq());
+        preorderAyudin(nodo.getDer());
+    }
+
+    @Override
+    public void postorder() throws NoSuchElementException {
+        if (isEmpty())
+            throw new NoSuchElementException("El arbol esta vacio");
+        postorderAyudin(root);
+    }
+
+    /**
+     * Preorden iterativo usando una pila (DStack) en lugar de recursion.
+     */
+    public void preorderIterativo() throws NoSuchElementException {
         if (isEmpty()) {
-            throw new NoSuchElementException("El arbol esta vaico");
+            throw new NoSuchElementException("El arbol esta vacio");
         }
 
         DStack<Nodo<T>> pila = new DStack<>();
@@ -148,23 +174,6 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
             if (actual.getIzq() != null) {
                 pila.push(actual.getIzq());
             }
-        }
-    }
-
-    @Override
-    public void postorder() throws NoSuchElementException {
-        if (isEmpty()) {
-            throw  new NoSuchElementException("El arbol esta vacio");
-        }
-
-        postorder(root);
-    }
-
-    private void postorder(Nodo<T> nodo) {
-        if (nodo != null) {
-            postorder(nodo.getIzq());
-            postorder(nodo.getDer());
-            IO.println(nodo.getElemento());
         }
     }
 
@@ -197,6 +206,15 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         return null;
     }
 
+    private void postorderAyudin(Nodo nodo){
+        if ( nodo== null)return;
+        postorderAyudin(nodo.getIzq());
+        postorderAyudin(nodo.getDer());
+        IO.println(nodo.getElemento()+" ");
+    }
+    //
+    // lo nuevo
+    //
     @Override
     public boolean isEmpty() {
         return root == null;
@@ -204,74 +222,62 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public int Height() throws NoSuchElementException {
-        if (isEmpty()) {
+        if (isEmpty()){
             throw new NoSuchElementException("El arbol esta vacio");
         }
-
-        return Height(root);
-    }
-
-    private int Height(Nodo<T> nodo) {
-        if (nodo == null) {
-            return -1;
+        Queue<Nodo<T>> cola = new LinkedList<>();
+        cola.add(root);
+        int altura = -1;
+        while (!cola.isEmpty()){
+            int tamañoNivel = cola.size();
+            altura++;
+            for (int i = 0; i < tamañoNivel; i++){
+                Nodo<T> actual = cola.poll();
+                if (actual.getIzq() != null) cola.add(actual.getIzq());
+                if (actual.getDer() != null) cola.add(actual.getDer());
+            }
         }
-        int izq = Height(nodo.getIzq());
-        int der = Height(nodo.getDer());
-        if (izq > der) {
-            return izq + 1;
-        }
-
-        return der + 1;
+        return altura;
     }
 
     @Override
     public int Weight() throws NoSuchElementException {
-        if (isEmpty()) {
+        if (isEmpty()){
             throw new NoSuchElementException("El arbol esta vacio");
         }
-
-        return Weight(root);
-    }
-
-    private int Weight(Nodo<T> nodo) {
-        if (nodo == null) {
-            return 0;
+        Queue<Nodo<T>> cola = new LinkedList<>();
+        cola.add(root);
+        int peso = 0;
+        while (!cola.isEmpty()){
+            Nodo<T> actual = cola.poll();
+            peso++;
+            if (actual.getIzq() != null) cola.add(actual.getIzq());
+            if (actual.getDer() != null) cola.add(actual.getDer());
         }
-
-        return 1 + Weight(nodo.getIzq()) + Weight(nodo.getDer());
+        return peso;
     }
 
     @Override
     public int Degree() throws NoSuchElementException {
-        if( isEmpty()) {
+        if (isEmpty()){
             throw new NoSuchElementException("El arbol esta vacio");
         }
-
-        return Degree(root);
-    }
-
-    private int Degree(Nodo<T> nodo) {
-        if (nodo == null) {
-            return 0;
-        }
+        Queue<Nodo<T>> cola = new LinkedList<>();
+        cola.add(root);
         int grado = 0;
-        if (nodo.getIzq() != null) {
-            grado = grado + 1;
+        while (!cola.isEmpty()){
+            Nodo<T> actual = cola.poll();
+            int hijos = 0;
+            if (actual.getIzq() != null){
+                hijos++;
+                cola.add(actual.getIzq());
+            }
+            if (actual.getDer() != null){
+                hijos++;
+                cola.add(actual.getDer());
+            }
+            if (hijos > grado) grado = hijos;
         }
-        if (nodo.getDer() != null) {
-            grado = grado + 1;
-        }
-
-        int izq = Degree(nodo.getIzq());
-        int der = Degree(nodo.getDer());
-
-        if (izq > grado) {
-            grado = izq;
-        }
-        if (der > grado) {
-            grado = der;
-        }
-
         return grado;
     }
 
