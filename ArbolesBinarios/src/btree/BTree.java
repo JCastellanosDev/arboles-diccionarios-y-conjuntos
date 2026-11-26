@@ -5,7 +5,6 @@ import tree.Tree;
 import utilis.TreePrinter;
 import dqueue.DQueue;
 import dstack.DStack;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -177,10 +176,7 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    /**
-     * Busqueda en amplitud (BFS): recorre el arbol nivel por nivel usando una cola (FIFO).
-     * Devuelve el nodo que contiene el valor, o null si no existe.
-     */
+
     @Override
     public Nodo<T> ampSearch(T value) throws NoSuchElementException {
         if (isEmpty()) {
@@ -189,14 +185,14 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         if (value == null) {
             throw new IllegalArgumentException("No se puede buscar un null");
         }
-        DQueue<Nodo<T>> cola = new DQueue<>();                // 1. cola vacia
-        cola.enqueue(root);                                   // 2. insertar la raiz
-        while (!cola.isEmpty()) {                             // 3. mientras la cola no este vacia
-            Nodo<T> actual = cola.dequeue();                  //    extraer el frente
-            if (actual.getElemento().compareTo(value) == 0) { //    procesar el nodo
+        DQueue<Nodo<T>> cola = new DQueue<>();
+        cola.enqueue(root);
+        while (!cola.isEmpty()) {
+            Nodo<T> actual = cola.dequeue();
+            if (actual.getElemento().compareTo(value) == 0) {
                 return actual;
             }
-            if (actual.getIzq() != null) {                    //    encolar hijos (izq -> der)
+            if (actual.getIzq() != null) {
                 cola.enqueue(actual.getIzq());
             }
             if (actual.getDer() != null) {
@@ -212,9 +208,7 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
         postorderAyudin(nodo.getDer());
         IO.println(nodo.getElemento()+" ");
     }
-    //
-    // lo nuevo
-    //
+
     @Override
     public boolean isEmpty() {
         return root == null;

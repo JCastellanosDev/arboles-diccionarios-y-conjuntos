@@ -7,18 +7,6 @@ void main() {
 
     TreeMap<String, String> mapa = new TreeMap<>();
 
-//
-//    mapa.put("Rulis", "Raul");
-//    mapa.put("Billy", "Cesar");
-//    mapa.put("Kike","Enrique");
-//    mapa.put("B", "Brenda");
-//
-//    String apodo ="B";
-//    if (apodo.equals("B")) {
-//        IO.println("Brenda");
-//    }
-//    IO.println(mapa.get(apodo));
-
     LHashMap<String,String> nombres = new LHashMap<>();
     nombres.put("Rulis", "Raul");
     nombres.put("Billy", "Cesar");
