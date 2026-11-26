@@ -4,6 +4,7 @@ import nodo.Nodo;
 import tree.Tree;
 import utilis.TreePrinter;
 import dstack.DStack;
+import dqueue.DQueue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +150,31 @@ public class BTree<T extends Comparable<T>> implements Tree<T> {
                 pila.push(actual.getIzq());
             }
         }
+    }
+
+    @Override
+    public Nodo<T> ampSearch(T value) throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException("El arbol esta vacio");
+        }
+        if (value == null) {
+            throw new IllegalArgumentException("No se puede buscar un null");
+        }
+        DQueue<Nodo<T>> cola = new DQueue<>();
+        cola.enqueue(root);
+        while (!cola.isEmpty()) {
+            Nodo<T> actual = cola.dequeue();
+            if (actual.getElemento().compareTo(value) == 0) {
+                return actual;
+            }
+            if (actual.getIzq() != null) {
+                cola.enqueue(actual.getIzq());
+            }
+            if (actual.getDer() != null) {
+                cola.enqueue(actual.getDer());
+            }
+        }
+        return null;
     }
 
     @Override

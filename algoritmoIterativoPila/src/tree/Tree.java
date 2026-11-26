@@ -21,4 +21,6 @@ public interface Tree<T> {
     int Weight() throws NoSuchElementException;
     int Degree() throws NoSuchElementException;
 
+    Nodo<T> ampSearch(T value) throws NoSuchElementException;
+
 }
