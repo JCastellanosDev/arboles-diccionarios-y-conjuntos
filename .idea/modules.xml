@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/arboles-diccionarios-y-conjuntos.iml" filepath="$PROJECT_DIR$/.idea/arboles-diccionarios-y-conjuntos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArbolesBinarios/ArbolesBinarios.iml" filepath="$PROJECT_DIR$/ArbolesBinarios/ArbolesBinarios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LHashMap/LHashMap.iml" filepath="$PROJECT_DIR$/LHashMap/LHashMap.iml" />
     </modules>
   </component>
 </project>
